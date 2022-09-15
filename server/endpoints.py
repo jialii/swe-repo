@@ -9,7 +9,11 @@ from flask_restx import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
-
+LIST = 'list'
+HELLO = '/hello'
+MESSAGE = 'message'
+CHAR_TYPE_LIST = f'character_types/{LIST}'
+CHAR_TYPE_LIST_NM = f'character_types_list/{LIST}'
 
 @api.route('/hello')
 class HelloWorld(Resource):

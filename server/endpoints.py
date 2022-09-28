@@ -13,9 +13,14 @@ LIST = 'list'
 HELLO = '/hello'
 MESSAGE = 'message'
 CHAR_TYPE_LIST = f'character_types/{LIST}'
-CHAR_TYPE_LIST_NM = f'character_types_list/{LIST}'
+CHAR_TYPE_LIST_NM = 'character_types_list/{LIST}'
 
-@api.route('/hello')
+CHAR_TYPE_DETAILS = f'character_types_details/{LIST}'
+
+A_CHAR_TYPE = 'Wizard'
+ANOTHER_CHAR_TYPE = 'Warrior'
+
+@api.route(HELLO)
 class HelloWorld(Resource):
     """
     The purpose of the HelloWorld class is to have a simple test to see if the
@@ -26,7 +31,29 @@ class HelloWorld(Resource):
         A trivial endpoint to see if the server is running.
         It just answers with "hello world."
         """
-        return {'hello': 'world'}
+        return {MESSAGE: 'hello world'}
+
+@api.route(CHAR_TYPE_LIST)
+class CharaterTypeList(Resource):
+    """
+    This will get a list of character types
+    """
+    def get(self):
+        """
+        Returns a list of character typpes
+        """
+        return {CHAR_TYPE_LIST_NM:[A_CHAR_TYPE, ANOTHER_CHAR_TYPE]}
+
+@api.route(f'{CHAR_TYPE_DETAILS}/<character_type>')
+class CharaterTypeDetails(Resource):
+    """
+    This will get a list of character types
+    """
+    def get(self, character_type):
+        """
+        Returns a list of character typpes
+        """
+        return {character_type:{}}
 
 
 @api.route('/endpoints')
